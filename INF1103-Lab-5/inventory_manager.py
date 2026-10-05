@@ -75,6 +75,7 @@ def search_product(inventory):
 
     print("Product not found.")
 
+
 def load_inventory():
     if os.path.exists("inventory.json"):
         with open("inventory.json", "r") as file:
@@ -89,6 +90,14 @@ def load_inventory():
     print("Starting with empty inventory.")
 
     return []
+
+
+def save_inventory(inventory):
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file, indent=4)
+
+    print("Inventory saved successfully to inventory.json.")
+
 
 inventory = load_inventory()
 
@@ -118,6 +127,16 @@ while True:
 
     elif option == "4":
         search_product(inventory)
+
+    elif option == "5":
+        save_inventory(inventory)
+
+    elif option == "6":
+        print("Saving inventory before exit...")
+        save_inventory(inventory)
+        print("Thank you for using Inventory Management System.")
+        print("Program terminated.")
+        break
 
     else:
         print("Invalid option.")
