@@ -74,3 +74,50 @@ def search_product(inventory):
             return
 
     print("Product not found.")
+
+def load_inventory():
+    if os.path.exists("inventory.json"):
+        with open("inventory.json", "r") as file:
+            inventory = json.load(file)
+
+        print("inventory.json found.")
+        print("Inventory loaded successfully.")
+
+        return inventory
+
+    print("inventory.json not found.")
+    print("Starting with empty inventory.")
+
+    return []
+
+inventory = load_inventory()
+
+while True:
+    print("\n========================================")
+    print("INVENTORY MANAGEMENT SYSTEM")
+    print("========================================")
+    print("----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+
+    option = input("Enter option: ")
+
+    if option == "1":
+        display_all(inventory)
+
+    elif option == "2":
+        add_product(inventory)
+
+    elif option == "3":
+        update_stock(inventory)
+
+    elif option == "4":
+        search_product(inventory)
+
+    else:
+        print("Invalid option.")
